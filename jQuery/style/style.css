@@ -1,0 +1,22 @@
+#div1{
+    margin: auto;
+    text-align: center;
+    border: 3px black dotted;
+    font-size: 50px;
+    background-color: aquamarine;
+    height: 400px;
+    width: 900px;
+    position: relative;
+}
+
+#div2{
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+    border: 3px black dotted;
+    font-size: 50px;
+    background-color: rgb(202, 38, 202);
+    height: 400px;
+    width: 900px;
+    position: relative;
+}
