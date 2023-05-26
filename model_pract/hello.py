@@ -50,15 +50,19 @@ class UserForm(FlaskForm):
 
 @app.route('/user', methods=['GET'])
 def user():
-    first_name = "Piano"
-
     favourite_cars = ['Toyota Hillux',
                       'BMW x6',
                       'Audi Q7',
                       'Potch Kayena',
                       'Toyota Land Cruzer',
                       10]
-    return render_template('user.html', first_name=first_name, favourite_cars=favourite_cars)
+    return render_template('user.html', favourite_cars=favourite_cars)
+
+
+@app.route('/users/<name>')
+def name(name):
+    return render_template('UserName.html', name=name)
+
 # Create the error pages
 # invalid URL
 
