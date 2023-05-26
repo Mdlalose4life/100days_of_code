@@ -1,0 +1,15 @@
+<H1>Hello {{ first_name }}</H1>
+
+
+<h4>favourite cars:</h4>
+{% for suvs in favourite_cars %}
+
+    {% if suvs == 10 %}
+        {{ suvs + 100 }}
+    {% else %}
+        {{ suvs }}<br/>
+    {% endif %}
+    
+{% endfor %}
+
+<br/>favourite_cars.2"} <br/>
