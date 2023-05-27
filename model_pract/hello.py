@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_wtf import FlaskForm
@@ -40,12 +40,26 @@ class Users(db.Model):
 def __repr__(self):
     return '<Name %r' % self.first_name
 
+# create a form class
+
 
 class UserForm(FlaskForm):
-    first_name = StringField('Name', validators=[DataRequired()])
-    last_name = StringField('last_name', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired()])
-    submit = SubmitField('submit')
+    name = StringField("What's you name", validators=[DataRequired()])
+    submit = SubmitField("submit")
+
+# create name page
+
+
+@app.route('/name', methods=['GET', 'POST'])
+def name():
+    name = None
+    form = UserForm()
+    # Validators
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data = ''
+        flash("the form submitted successfully")
+    return render_template("name.html", name=name, form=form)
 
 
 @app.route('/user', methods=['GET'])
@@ -60,7 +74,7 @@ def user():
 
 
 @app.route('/users/<name>')
-def name(name):
+def UserName(name):
     return render_template('UserName.html', name=name)
 
 # Create the error pages
