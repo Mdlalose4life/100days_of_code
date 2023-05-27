@@ -1,0 +1,1 @@
+document.getElementById('demo').innerHTML = "Thanks to Javascript;"
