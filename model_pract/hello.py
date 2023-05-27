@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, flash
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from userdb import Users, db
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -17,36 +16,21 @@ from wtforms.validators import DataRequired
 
 # Create an instance of a application
 app = Flask(__name__)
-# add database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kamva.db'
 # Secrete key
 app.config['SECRET_KEY'] = 'secret_key'
-# Initialize the database
-db = SQLAlchemy(app)
-
-# Create the model
-
-
-class Users(db.Model):
-    id = db.Column(db.Integer,  primary_key=True)
-    first_name = db.Column(db.String(60), nullable=False)
-    last_name = db.Column(db.String(60), nullable=False)
-    email = db.Column(db.String(100), unique=True)
-    created_on = db.Column(db.DateTime, default=datetime.utcnow)
-
-# Create a string
-
-
-def __repr__(self):
-    return '<Name %r' % self.first_name
 
 # create a form class
 
 
 class UserForm(FlaskForm):
-    name = StringField("What's you name", validators=[DataRequired()])
+    name = StringField("name", validators=[DataRequired()])
+    email = StringField("email", validators=[DataRequired()])
     submit = SubmitField("submit")
 
+
+class NameForm(FlaskForm):
+    name = StringField("What's your name", validators=[DataRequired()])
+    submit = SubmitField("submit")
 # create name page
 
 
@@ -60,6 +44,18 @@ def name():
         form.name.data = ''
         flash("the form submitted successfully")
     return render_template("name.html", name=name, form=form)
+
+
+@app.route('/user/add', methods=['GET', 'POST'])
+def add_user():
+    name = None
+    form = UserForm()
+    if form.validate_on_submit():
+        user = Users.query.filter_by(email=form.email.data).first()
+        if user is None:
+            user = Users(name=form.name.data, email=form.email.data)
+            db.session.add(user)
+    return render_template("add_user.html", form=form)
 
 
 @app.route('/user', methods=['GET'])

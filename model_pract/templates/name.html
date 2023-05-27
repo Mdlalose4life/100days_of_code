@@ -12,7 +12,7 @@
 {% if name %}
     <h1> Hello {{name}}!!!</h1>
     <br/>
-    <img src="{{ url_for('static',filename='images/rock.avif') }}"
+    <img src="{{ url_for('static',filename='images/rock.avif') }}">
     <br/><br/>
     <p id="demo">This is stuff</p>
 
@@ -22,10 +22,10 @@
     <br/>
     <form method="POST">
         {{ form.hidden_tag() }}
-        {{ form.name.label(class="form-label")}}
+        {{ form.name.label(class="form-label") }}
         {{ form.name(class="form-control") }}
         <br/>
-        {{form.submit(class="btn btn-light")}}
+        {{ form.submit(class="btn btn-light") }}
 
     </form>
 
