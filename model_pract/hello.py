@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, flash
 from userdb import Users, db
+from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -18,6 +19,9 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 # Secrete key
 app.config['SECRET_KEY'] = 'secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kamva.db'
+db.init_app(app)
+
 
 # create a form class
 
@@ -37,7 +41,7 @@ class NameForm(FlaskForm):
 @app.route('/name', methods=['GET', 'POST'])
 def name():
     name = None
-    form = UserForm()
+    form = NameForm()
     # Validators
     if form.validate_on_submit():
         name = form.name.data
@@ -53,9 +57,16 @@ def add_user():
     if form.validate_on_submit():
         user = Users.query.filter_by(email=form.email.data).first()
         if user is None:
-            user = Users(name=form.name.data, email=form.email.data)
+            user = Users(name=form.name.data,
+                         email=form.email.data)
             db.session.add(user)
-    return render_template("add_user.html", form=form)
+            db.session.commit()
+        name = form.name.data
+        form.name.data = ''
+        form.email.data = ''
+        flash("user added successfully")
+    our_users = Users.query.order_by(Users.created_on)
+    return render_template("add_user.html", form=form, name=name, our_users=our_users)
 
 
 @app.route('/user', methods=['GET'])
@@ -89,5 +100,7 @@ def page_not_found(e):
     return render_template("500.html"), 500
 
 
+with app.app_context():
+    db.create_all()
 if __name__ == '__main__':
     app.run(debug=True)
