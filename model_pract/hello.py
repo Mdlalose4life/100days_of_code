@@ -19,7 +19,10 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 # Secrete key
 app.config['SECRET_KEY'] = 'secret_key'
+# old sqllitedb
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kamva.db'
+# New mysqldb
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql//root:password123@localhost/camva_db'
 db.init_app(app)
 
 
