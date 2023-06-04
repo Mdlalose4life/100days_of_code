@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <span class="title"><h1>{% block title %} Feelings {% endblock title %} </h1></span>
+    <div class="content">
+        {% for condition in conditions %}
+            <div class="conditions">
+                <p><b>{{ condition.id }}</b></p>
+                <b>
+                    <p class="title">
+                        <a href="#">
+                            {{ condition.condition_name }}
+                        </a>
+                    </p>
+                </b>
+<!--                <div class="content">
+                    <p>{{ condition.condition_name }}</p>
+                </div>-->
+                <hr>
+            </div>  
+        {% endfor %} 
+    </div>
+{% endblock %}
