@@ -7,15 +7,25 @@
                 <p><b>{{ condition.id }}</b></p>
                 <b>
                     <p class="title">
-                        <a href="#">
+                        <a href="{{ url_for('strategy', condition_id=condition.id) }}">
                             {{ condition.condition_name }}
                         </a>
                     </p>
                 </b>
-<!--                <div class="content">
-                    <p>{{ condition.condition_name }}</p>
-                </div>-->
                 <hr>
+                {% if strategies[condition.id] %}
+                <ul>
+                    {% for strategy in strategies[condition.id] %}
+                        <li>{{ strategy.strategy_text }}</li>
+                        {% if strategy.youtube_content %}
+                            <li>YouTube: {{ strategy.youtube_content }}</li>
+                        {% endif %}
+                        {% if strategy.spotify_content %}
+                            <li>Spotify: {{strategy.spotify_content}}</li>
+                        {% endif %}
+                    {% endfor %}           
+                </ul>
+                {% endif %}
             </div>  
         {% endfor %} 
     </div>

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import os
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, flash, url_for
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -25,14 +25,30 @@ def index():
 @app.route('/home')
 def home():
     conditions = Conditions.query.all()
-    return render_template('conditions.html', conditions=conditions)
+    strategies = {}
+    for condition in conditions:
+        strategies[condition.id] = condition.strategy
+    return render_template('conditions.html', conditions=conditions, strategies=strategies)
 
 
-@app.route('/strategy')
-def strategy():
-    pass
+@app.route('/strategy/<int:condition_id>')
+def strategy(condition_id):
+    condition = Conditions.query.get(condition_id)
+    if condition:
+        strategies = condition.strategy
+        return render_template('strategy.html', condition=condition, strategies=strategies)
+    else:
+        return "Condition is not valid"
 
-# Models
+
+@app.route('/strategy_details/<int:strategy_id>')
+def strategy_details(strategy_id):
+    strategy = Strategies.query.get(strategy_id)
+    if strategy:
+        return render_template('strategy_details.html', strategy=strategy)
+    else:
+        flash('Strtegy not found.', 'error')
+        return redirect(url_for('home'))
 
 
 class User(db.Model):
@@ -122,7 +138,7 @@ class SpotifyContent(db.Model):
     updated_on = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow())
     podcast_title = db.Column(db.String(60), nullable=False)
-    podcast_id = db.Column(db.String(60), nullable=False)
+    podcast_content = db.Column(db.String(200), nullable=False)
     strategy_id = db.Column(db.String(60), db.ForeignKey(
         "strategies.id"))
 
@@ -141,7 +157,7 @@ class YoutubeContent(db.Model):
     updated_on = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow())
     video_title = db.Column(db.String(60), nullable=False)
-    video_url = db.Column(db.String(60), nullable=False)
+    youtube_content = db.Column(db.String(60), nullable=False)
     strategy_id = db.Column(db.String(60), db.ForeignKey("strategies.id"))
 
 

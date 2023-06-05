@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <span class="title"><h1>{% block title %}Strategy for {{ condition.condition_name }} {% endblock title %}</h1></span>
+    <div class="content">
+        {% if strategy %}
+        <ul>
+            {% for strategy in strategies %}
+                <li>{{ strategy.strategy_text }}</li>
+                {% if strategy.youtube_content %}
+                    <li>YouTube: {{ strategy.youtube_content }}</li>
+                {% endif %}
+                {% if strategy.spotify_content %}
+                    <li>Spotify: {{ strategy.spotify_content }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p> No strategy if found for the chosen condition.</p>
+        {% endif %}
+    </div>
+{% endblock %}
