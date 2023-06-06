@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Welcome to MindPal</h1>
+    <p>Your own mental health care Compaion.</p>
+    <span class="title"><h1>{% block title %} Feelings {% endblock title %} </h1></span>
+    <div class="content">
+        {% for condition in conditions %}
+            <div class="conditions">
+                <p><b>{{ condition.id }}</b></p>
+                <b>
+                    <p class="title">
+                        {% for strategy in condition.strategy %}
+                            <a href="{{ url_for('strategy_details', strategy_id=strategy.id) }}">
+                                {{ condition.condition_name }}
+                            </a>
+                        {% endfor %}
+                    </p>
+                </b>
+                <hr>
+                {% if strategies[condition.id] %}
+                <ul>
+                    {% for strategy in strategies[condition.id] %}
+                        <li>{{ strategy.strategy_name }}</li>
+                    {% endfor %}           
+                </ul>
+                {% endif %}
+            </div>  
+        {% endfor %} 
+    </div>
+{% endblock %}
