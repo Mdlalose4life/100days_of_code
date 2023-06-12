@@ -4,7 +4,6 @@
     <div class="content">
         {% for condition in conditions %}
             <div class="conditions">
-                <p><b>{{ condition.id }}</b></p>
                 <b>
                     <p class="title">
                         <a href="{{ url_for('strategy', condition_id=condition.id) }}">
@@ -16,13 +15,7 @@
                 {% if strategies[condition.id] %}
                 <ul>
                     {% for strategy in strategies[condition.id] %}
-                        <li>{{ strategy.strategy_text }}</li>
-                        {% if strategy.youtube_content %}
-                            <li>YouTube: {{ strategy.youtube_content }}</li>
-                        {% endif %}
-                        {% if strategy.spotify_content %}
-                            <li>Spotify: {{strategy.spotify_content}}</li>
-                        {% endif %}
+                        <li>{{ strategy.strategy_name }}</li>
                     {% endfor %}           
                 </ul>
                 {% endif %}

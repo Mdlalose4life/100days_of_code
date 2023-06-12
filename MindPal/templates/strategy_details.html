@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <h1>{{ strategy.strategy_name }}</h1>
+    <h1>Strategy Details</h1>
+    <h2>{{ strategy.strategy_name }}</h2>
     <p>{{ strategy.strategy_text }}</p>
-    {% if strategy.youtube_content %}
-        <p>YouTube Video URL: {{ strategy.youtube_content }}</p>
-    {% endif %}
-    {% if strategy.spotify_content %}
-        <p>Podcast ID: {{ strategy.spotify_content }}</p>
-    {% endif %}
-    <!--add more style-->
+    <h3>YouTube Content</h3>
+    <p>{{ strategy.youtube_content }}</p>
+    <h3>Spotify Content</h3>
+    <p>{{ strategy.spotify_content }}</p>
 {% endblock %}
