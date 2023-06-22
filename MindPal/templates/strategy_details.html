@@ -1,11 +1,22 @@
 {% extends 'base.html' %}
-
 {% block content %}
-    <h1>Strategy Details</h1>
-    <h2>{{ strategy.strategy_name }}</h2>
-    <p>{{ strategy.strategy_text }}</p>
-    <h3>YouTube Content</h3>
-    <p>{{ strategy.youtube_content }}</p>
-    <h3>Spotify Content</h3>
-    <p>{{ strategy.spotify_content }}</p>
+<h1>Strategy Details</h1>
+<h2>{{ strategy.strategy_name }}</h2>
+<p>{{ strategy.strategy_text }}</p>
+
+<h3>Youtube Content</h3>
+<ul>
+    {% for content in youtube_content %}
+        <li>Title: {{ content.video_title }}</li>
+        <li>Content: {{content.youtube_content }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Spotify Content</h3>
+<ul>
+    {% for content in spotify_content %}
+        <li>Title: {{ content.podcast_title }} </li>
+        <li>Content: {{ content.podcast_content }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}

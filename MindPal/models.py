@@ -93,8 +93,8 @@ class SpotifyContent(db.Model):
     updated_on = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow())
     podcast_title = db.Column(db.String(60), nullable=False)
-    podcast_content = db.Column(db.String(200), nullable=False)
-    strategy_id = db.Column(db.String(60), db.ForeignKey(
+    podcast_content = db.Column(db.String(400), nullable=False)
+    strategy_id = db.Column(db.Integer, db.ForeignKey(
         "strategies.id"))
 
 
@@ -112,5 +112,5 @@ class YoutubeContent(db.Model):
     updated_on = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow())
     video_title = db.Column(db.String(60), nullable=False)
-    youtube_content = db.Column(db.String(60), nullable=False)
-    strategy_id = db.Column(db.String(60), db.ForeignKey("strategies.id"))
+    youtube_content = db.Column(db.String(400), nullable=False)
+    strategy_id = db.Column(db.Integer, db.ForeignKey("strategies.id"))

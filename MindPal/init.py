@@ -33,22 +33,22 @@ strategy4 = Strategies(strategy_name='Isolation',
                        conditions=condition4)
 
 podcast1 = SpotifyContent(
-    podcast_title='willingess to vurnarable', podcast_content='file/audio010', strategies=strategy1)
+    podcast_title='Healthy Anger tool Box', podcast_content='https://open.spotify.com/show/56iaHI3hHIAcqW6D6upalE?si=c9b4ca18238e45b8', strategies=strategy1)
 podcast2 = SpotifyContent(
-    podcast_title='The epression', podcast_content='file/audio020', strategies=strategy2)
+    podcast_title='How to deal with Stress', podcast_content='https://open.spotify.com/show/0SBqA4Dh045MqXBZbIqQ8C?si=db8955179d8042bd', strategies=strategy2)
 podcast3 = SpotifyContent(
-    podcast_title='willingess to vurnarable', podcast_content='file/audio040', strategies=strategy3)
+    podcast_title='Family Conflicts', podcast_content='https://open.spotify.com/show/6SsyGBZNHvIzdTd8fycDJC?si=7b814e4b0d2146b5', strategies=strategy3)
 podcast4 = SpotifyContent(
-    podcast_title='sit and stand', podcast_content='file/audio050', strategies=strategy4)
+    podcast_title='How to deal with depression', podcast_content='https://open.spotify.com/episode/684eS6Nc0sVz1K30AKZpdR?si=5f6d7c827c61454e', strategies=strategy4)
 
 youtubeVideo1 = YoutubeContent(
-    video_title='be personal', youtube_content='https://www.youtube.com/watch?v=0sOvCWFmrtA', strategies=strategy1)
+    video_title='Anger Management Techniques', youtube_content='https://www.youtube.com/watch?v=BsVq5R_F6RA', strategies=strategy1)
 youtubeVideo2 = YoutubeContent(
-    video_title='try to understand others', youtube_content='https://www.youtube.com/watch?v=W_72j4UqOSM&list=RDTk6Dbnzpzns&index=5', strategies=strategy1)
+    video_title='Managing Stress: Good for Your Health', youtube_content='https://www.youtube.com/watch?v=15GaKTP0gFE', strategies=strategy2)
 youtubeVideo3 = YoutubeContent(
-    video_title='be personal', youtube_content='https://www.youtube.com/watch?v=H6CF_pcO338&list=RDH6CF_pcO338&start_radio=1&rv=W_72j4UqOSM', strategies=strategy1)
+    video_title='How To Deal With a Toxic Family', youtube_content='https://www.youtube.com/watch?v=jEySVCbxT8Q', strategies=strategy3)
 youtubeVideo4 = YoutubeContent(
-    video_title='No more tricky smile', youtube_content='https://www.youtube.com/watch?v=KI7EecQ8-xQ&list=RDH6CF_pcO338&index=9', strategies=strategy3)
+    video_title='Fight Depression and Burnout in 2 Minutes a Day:', youtube_content='https://www.youtube.com/watch?v=sWfNosruPPw', strategies=strategy4)
 
 with app.app_context():
     db.session.add_all([user1, user2, user3, user4, user5])

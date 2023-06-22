@@ -1,10 +1,8 @@
-{% extends 'base.html' %}
-{% block content %}
 <head>
     <title>Login</title>
     <style>
         body {
-            background-color: rgb(249, 249, 249);
+            background-color:#5ab9ea;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,9 +13,9 @@
             width: 400px;
             padding: 7px 10px;
             margin: 2px 0;
-            border: 1px solid #ffebcd;
+            border: 1px #84CEE8;
             box-sizing: border-box;
-            background-color: #ffebcd;
+            background-color: #84CEE8;
         }
         .form-row {
             display: flex;
@@ -60,11 +58,14 @@
         .form-row input[type="submit"]:hover {
             background-color: #45a049;
         }
+        .text{
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>Login</h1>
     <div class="login">
+        <div class="text"><h1>Login</h1></div>
         <form method="POST" action="{{ url_for('login') }}">
             {{ form.hidden_tag() }}
             <div class="form-row">
@@ -91,4 +92,4 @@
         </form>
     </div>
 </body>
-{% endblock %}
+</div>
