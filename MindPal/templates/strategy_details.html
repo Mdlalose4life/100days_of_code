@@ -8,7 +8,7 @@
 <ul>
     {% for content in youtube_content %}
         <li>Title: {{ content.video_title }}</li>
-        <li>Content: {{content.youtube_content }}</li>
+        <li>Content: <a href="{{content.youtube_content}}"><button class="btn btn-primary" type="button">Youtube Content</button> </a></li>
     {% endfor %}
 </ul>
 
@@ -16,7 +16,7 @@
 <ul>
     {% for content in spotify_content %}
         <li>Title: {{ content.podcast_title }} </li>
-        <li>Content: {{ content.podcast_content }}</li>
+        <li>Content: <a href="{{content.podcast_content}}"><button class="btn btn-primary" type="button">Spotify Content</button> </a></li>
     {% endfor %}
 </ul>
 {% endblock %}
