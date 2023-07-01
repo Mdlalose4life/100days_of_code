@@ -8,7 +8,7 @@ let stock ={
     liquid:[
         "Water",
         "ice"],
-    holder:[
+    holder:[ 
         "cone",
         "cup",
         "stick"
