@@ -33,11 +33,13 @@ const fs = require('fs')
 // }
 
 // delete files
-if (fs.existsSync('./docs/delete.txt')){
-    fs.unlink('./docs/delete.txt', (err) => {
-        if (err) {
-            console.log(err)
-        }
-        console.log('File is deleted')
-    })
-}
+// if (fs.existsSync('./docs/delete.txt')){
+//     fs.unlink('./docs/delete.txt', (err) => {
+//         if (err) {
+//             console.log(err)
+//         }
+//         console.log('File is deleted')
+//     })
+//}
+
+console.log(fs)
